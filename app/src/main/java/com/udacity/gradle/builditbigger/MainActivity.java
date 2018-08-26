@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+
+import com.udacity.gradle.builditbigger.paid.MainActivityFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -13,6 +14,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportFragmentManager().beginTransaction().
+                add(R.id.fragment, new MainActivityFragment()).commit();
+
     }
 
     @Override
@@ -25,9 +29,5 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
-    }
-
-    public void tellJoke(View view) {
-        new EndpointsAsyncTask(this).execute();
     }
 }
