@@ -3,6 +3,7 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.util.Pair;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -14,7 +15,11 @@ import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 
 import java.io.IOException;
 
+import static android.content.ContentValues.TAG;
+
 public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
+
+    private static String TAG = EndpointsAsyncTask.class.getName();
 
     private static MyApi myApiService = null;
     private Context context;
@@ -42,7 +47,8 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
         try {
             return myApiService.getJokeApiMethod().execute().getJoke();
         } catch (IOException e) {
-            return e.getMessage();
+            Log.d(TAG,e.getMessage());
+            return "";
         }
     }
 
